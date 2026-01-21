@@ -43,7 +43,7 @@ To run your portfolio on your local machine:
 1. **Clone the repository**
 
 ```bash
-git clone -b "uwase mahoro belyse" https://github.com/your-username/your-repo-name.git
+git clone -b "uwase mahoro belyse" https://github.com/NexventuresLtd/Task_2_Jan_2026.git
 ```
 
 2. **Navigate into the project directory**
@@ -81,3 +81,4 @@ Watch the walkthrough of the portfolio here:
 * Fully responsive across **mobile, tablet, and desktop** screens.
 * **All components built with Tailwind CSS**, no external UI libraries.
 * Demonstrates **React component structure**, **responsive design**, and **TypeScript usage**.
+
