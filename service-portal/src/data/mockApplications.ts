@@ -6,20 +6,20 @@ export const applications: Application[] = [
     applicationName: "Abay Tessema",
     applicationType: "Driving License",
     applicationStatus: "Submitted",
-    submitedAt: "12-20-2025",
+    submitedAt: "2026-01-23",
   },
   {
     id: "abay1830",
     applicationName: "Abay Tessema",
     applicationType: "National ID",
     applicationStatus: "Submitted",
-    submitedAt: "12-20-2025",
+    submitedAt: "2026-01-22",
   },
   {
     id: "abay9209",
     applicationName: "Abay Tessema",
     applicationType: "Health Insurance",
     applicationStatus: "Submitted",
-    submitedAt: "12-20-2025",
+    submitedAt: "2026-01-26",
   },
 ];

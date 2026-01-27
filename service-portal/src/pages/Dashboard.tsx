@@ -13,9 +13,7 @@ const Dashboard = ({ applications, setApplications }: DashboardProps) => {
         prev.map((app) => {
           if (app.applicationStatus === "Submitted") {
             return { ...app, applicationStatus: "Under-Review" };
-          }
-
-          if (app.applicationStatus === "Under-Review") {
+          } else if (app.applicationStatus === "Under-Review") {
             const newStatus: ApplicationStatus =
               Math.random() > 0.5 ? "Approved" : "Rejected";
 
