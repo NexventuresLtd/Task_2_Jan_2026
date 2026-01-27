@@ -12,14 +12,14 @@ export const applications: Application[] = [
     id: "abay1830",
     applicationName: "Abay Tessema",
     applicationType: "National ID",
-    applicationStatus: "Under-Review",
+    applicationStatus: "Submitted",
     submitedAt: "12-20-2025",
   },
   {
     id: "abay9209",
     applicationName: "Abay Tessema",
     applicationType: "Health Insurance",
-    applicationStatus: "Approved",
+    applicationStatus: "Submitted",
     submitedAt: "12-20-2025",
   },
 ];

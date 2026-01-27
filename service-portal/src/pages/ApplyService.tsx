@@ -37,10 +37,6 @@ const ApplyService = ({ setApplications }: ApplyServiceProps) => {
       [name]: value,
     }));
 
-    setErrors((prev) => ({
-      ...prev,
-      [name]: undefined,
-    }));
   };
 
   const validate = () => {

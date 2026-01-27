@@ -40,7 +40,10 @@ function App() {
                   </div>
                 }
               >
-                <Dashboard />
+                <Dashboard
+                  applications={applications}
+                  setApplications={setApplications}
+                />
               </Suspense>
             }
           />
