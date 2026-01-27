@@ -1,12 +1,16 @@
 import { Routes, Route } from "react-router-dom";
-import { lazy, Suspense } from "react";
+import { Toaster } from "react-hot-toast";
+import { lazy, Suspense, useState } from "react";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 const Home = lazy(() => import("./pages/Home"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
 const ApplyService = lazy(() => import("./pages/ApplyService"));
 const Services = lazy(() => import("./pages/Services"));
+import { applications as data } from "./data/mockApplications";
+import type { Application } from "./types/application";
 function App() {
+  const [applications, setApplications] = useState<Application[]>(data);
   return (
     <div>
       <Header />
@@ -50,7 +54,7 @@ function App() {
                   </div>
                 }
               >
-                <ApplyService />
+                <ApplyService setApplications={setApplications} />
               </Suspense>
             }
           />
@@ -71,6 +75,7 @@ function App() {
         </Routes>
       </main>
       <Footer />
+      <Toaster position="top-right" />
     </div>
   );
 }

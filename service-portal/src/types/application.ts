@@ -14,7 +14,7 @@ export type ApplicationType=
 export interface Application{
     id:string,
     applicationName:string,
-    applicationType:ApplicationType,
+    applicationType:ApplicationType|"",
     applicationStatus:ApplicationStatus,
     submitedAt:string
 }
