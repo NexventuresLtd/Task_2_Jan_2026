@@ -62,7 +62,7 @@ This project was developed as part of an academic assignment to demonstrate:
 ### Steps
 ```bash
 # Clone the repository
-git clone https://github.com/NexventuresLtd/Task_2_Jan_2026.git
+git clone https://github.com/NexventuresLtd/Task_2_Jan_2026/tree/GovConnect
 
 # Navigate to project folder
 cd citizen-service-portal
