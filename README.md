@@ -62,7 +62,7 @@ This project was developed as part of an academic assignment to demonstrate:
 ### Steps
 ```bash
 # Clone the repository
-git clone <your-github-repo-link>
+git clone https://github.com/NexventuresLtd/Task_2_Jan_2026.git
 
 # Navigate to project folder
 cd citizen-service-portal
