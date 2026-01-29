@@ -35,11 +35,6 @@ const Header = () => {
               </Link>
             </li>
             <li>
-              <Link to="/services" className="hover:text-blue-500">
-                Services
-              </Link>
-            </li>
-            <li>
               <Link to="/dashboard" className="hover:text-blue-500">
                 Dashboard
               </Link>
@@ -62,14 +57,6 @@ const Header = () => {
                 onClick={() => setIsMenuOpen((prev) => !prev)}
               >
                 Apply
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/services"
-                onClick={() => setIsMenuOpen((prev) => !prev)}
-              >
-                Services
               </Link>
             </li>
             <li>

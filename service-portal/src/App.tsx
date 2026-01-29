@@ -12,70 +12,72 @@ import type { Application } from "./types/application";
 function App() {
   const [applications, setApplications] = useState<Application[]>(data);
   return (
-    <div>
+    <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex flex-col min-h-screen grow">
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Suspense
-                fallback={
-                  <div className="text-sm mt-2 text-blue-600 text-center md:text-lg lg:text-xl">
-                    Loading...
-                  </div>
-                }
-              >
-                <Home />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/dashboard"
-            element={
-              <Suspense
-                fallback={
-                  <div className="text-sm mt-2 text-blue-600 text-center md:text-lg lg:text-xl">
-                    Loading...
-                  </div>
-                }
-              >
-                <Dashboard
-                  applications={applications}
-                  setApplications={setApplications}
-                />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/apply-service"
-            element={
-              <Suspense
-                fallback={
-                  <div className="text-sm mt-2 text-blue-600 text-center md:text-lg lg:text-xl">
-                    Loading...
-                  </div>
-                }
-              >
-                <ApplyService setApplications={setApplications} />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/services"
-            element={
-              <Suspense
-                fallback={
-                  <div className="text-sm mt-2 text-blue-600 text-center md:text-lg lg:text-xl">
-                    Loading...
-                  </div>
-                }
-              >
-                <Services />
-              </Suspense>
-            }
-          />
-        </Routes>
+      <main className="grow">
+        <div className="w-full max-w-5xl mx-auto px-4">
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Suspense
+                  fallback={
+                    <div className="text-sm mt-2 text-blue-600 text-center md:text-lg lg:text-xl">
+                      Loading...
+                    </div>
+                  }
+                >
+                  <Home />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/dashboard"
+              element={
+                <Suspense
+                  fallback={
+                    <div className="text-sm mt-2 text-blue-600 text-center md:text-lg lg:text-xl">
+                      Loading...
+                    </div>
+                  }
+                >
+                  <Dashboard
+                    applications={applications}
+                    setApplications={setApplications}
+                  />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/apply-service"
+              element={
+                <Suspense
+                  fallback={
+                    <div className="text-sm mt-2 text-blue-600 text-center md:text-lg lg:text-xl">
+                      Loading...
+                    </div>
+                  }
+                >
+                  <ApplyService setApplications={setApplications} />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/services"
+              element={
+                <Suspense
+                  fallback={
+                    <div className="text-sm mt-2 text-blue-600 text-center md:text-lg lg:text-xl">
+                      Loading...
+                    </div>
+                  }
+                >
+                  <Services />
+                </Suspense>
+              }
+            />
+          </Routes>
+        </div>
       </main>
       <Footer />
       <Toaster position="top-right" />

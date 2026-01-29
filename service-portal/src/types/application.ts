@@ -16,5 +16,7 @@ export interface Application{
     applicationName:string,
     applicationType:ApplicationType|"",
     applicationStatus:ApplicationStatus,
-    submitedAt:string
+    submitedAt:string,
+    email:string,
+    phone:string
 }

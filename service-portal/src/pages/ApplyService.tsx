@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import type { Application, ApplicationType } from "../types/application";
 import InputField from "../components/forms/InputField";
@@ -12,17 +13,23 @@ interface ApplyServiceProps {
 interface FormValues {
   applicationName: string;
   applicationType: ApplicationType | "";
+  email:string;
+  phone:string;
 }
 
 interface FormErrors {
   applicationName?: string;
   applicationType?: string;
+  email?:string,
+  phone?:string
 }
 
 const ApplyService = ({ setApplications }: ApplyServiceProps) => {
   const [values, setValues] = useState<FormValues>({
     applicationName: "",
     applicationType: "",
+    email:"",
+    phone:""
   });
 
   const [errors, setErrors] = useState<FormErrors>({});
@@ -46,6 +53,13 @@ const ApplyService = ({ setApplications }: ApplyServiceProps) => {
       newErrors.applicationName = "Full name is required";
     }
 
+    if(!values.email || !values.email.includes('@')){
+      newErrors.email="Please, enter a valid email address"
+    }
+    if(!values.phone || Number.isNaN(Number(values.phone))){
+      newErrors.phone="Please, enter a valid phone number"
+    }
+
     if (!values.applicationType) {
       newErrors.applicationType = "Please select a service";
     }
@@ -66,6 +80,8 @@ const ApplyService = ({ setApplications }: ApplyServiceProps) => {
       id: crypto.randomUUID(),
       applicationName: values.applicationName,
       applicationType: values.applicationType,
+      email:values.email,
+      phone:values.phone,
       applicationStatus: "Submitted",
       submitedAt: new Date().toISOString().split("T")[0],
     };
@@ -77,6 +93,8 @@ const ApplyService = ({ setApplications }: ApplyServiceProps) => {
     setValues({
       applicationName: "",
       applicationType: "",
+      email:"",
+      phone:""
     });
 
     setErrors({});
@@ -85,9 +103,14 @@ const ApplyService = ({ setApplications }: ApplyServiceProps) => {
   return (
     <section className="mx-auto px-4 py-10 sm:px-6 lg:px-20 lg:py-16">
       <div className="max-w-lg w-full mx-auto lg:max-w-3xl bg-white shadow-md rounded-lg p-6 sm:p-8 lg:p-12">
-        <h1 className="mb-6 text-2xl sm:text-3xl font-semibold text-gray-900 text-center lg:text-left">
-          Apply for a Service
-        </h1>
+        <div className="flex items-center justify-between gap-3">
+          <h1 className="mb-6 text-2xl sm:text-3xl font-semibold text-gray-900 text-center lg:text-left">
+            Apply for a Service
+          </h1>
+          <button className="md:hidden text-sm font-medium text-blue-600">
+            <Link to="/dashboard">Dashboard →</Link>
+          </button>
+        </div>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-6">
           <InputField
@@ -95,6 +118,21 @@ const ApplyService = ({ setApplications }: ApplyServiceProps) => {
             name="applicationName"
             value={values.applicationName}
             error={errors.applicationName}
+            onChange={handleChange}
+          />
+          <InputField
+            label="Email"
+            name="email"
+            value={values.email}
+            error={errors.email}
+            onChange={handleChange}
+          />
+
+          <InputField
+            label="Phone Number"
+            name="phone"
+            value={values.phone}
+            error={errors.phone}
             onChange={handleChange}
           />
 

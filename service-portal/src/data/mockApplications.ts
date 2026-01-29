@@ -7,6 +7,8 @@ export const applications: Application[] = [
     applicationType: "Driving License",
     applicationStatus: "Submitted",
     submitedAt: "2026-01-23",
+    email: "abay@gmail.com",
+    phone: "0728029029",
   },
   {
     id: "abay1830",
@@ -14,6 +16,8 @@ export const applications: Application[] = [
     applicationType: "National ID",
     applicationStatus: "Submitted",
     submitedAt: "2026-01-22",
+    email: "abay@gmail.com",
+    phone: "0728029029",
   },
   {
     id: "abay9209",
@@ -21,5 +25,7 @@ export const applications: Application[] = [
     applicationType: "Health Insurance",
     applicationStatus: "Submitted",
     submitedAt: "2026-01-26",
+    email: "abay@gmail.com",
+    phone: "0728029029",
   },
 ];
