@@ -5,11 +5,23 @@ import Footer from "../components/Footer";
 import Notification from "../components/Notification";
 import { useApplications } from "../context/ApplicationContext";
 import type { Application } from "../types/application";
+import type { ApplicationStatus } from "../types/application";
 
 export default function ApplyBusiness() {
   const navigate = useNavigate();
-  const { addApplication } = useApplications();
+  const { addApplication, updateApplicationStatus } = useApplications();
+
+  /* 🔐 AUTH CHECK */
+  useEffect(() => {
+    const user = localStorage.getItem("currentUser");
+    if (!user) {
+      navigate("/login", { state: { from: "/apply-business" } });
+    }
+  }, [navigate]);
+
   const [submitted, setSubmitted] = useState(false);
+  const [applicationId, setApplicationId] = useState<string>("");
+
   const [formData, setFormData] = useState({
     ownerName: "",
     businessName: "",
@@ -19,13 +31,11 @@ export default function ApplyBusiness() {
     phone: "",
   });
 
-  // Notifications state
+  /* 🔔 NOTIFICATION STATE */
   const [notifications, setNotifications] = useState<
-    { type: string; title: string; message: string }[]
+    { type: "success" | "info" | "error"; title: string; message: string }[]
   >([]);
-  const [currentNotification, setCurrentNotification] = useState<number | null>(
-    null,
-  );
+  const [activeIndex, setActiveIndex] = useState<number>(-1);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
@@ -36,14 +46,17 @@ export default function ApplyBusiness() {
     }));
   };
 
+  /* =========================
+     📝 SUBMIT APPLICATION
+     ========================= */
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const appId = `APP-${Math.random().toString(36).substr(2, 9).toUpperCase()}`;
+    const id = `APP-${Date.now()}`;
     const today = new Date().toISOString().split("T")[0];
 
-    const newApplication: Application = {
-      id: appId,
+    const application: Application = {
+      id,
       serviceType: "business-registration",
       status: "submitted",
       submittedDate: today,
@@ -55,9 +68,10 @@ export default function ApplyBusiness() {
         "Your business registration application has been submitted successfully.",
     };
 
-    addApplication(newApplication);
+    addApplication(application);
+    setApplicationId(id);
 
-    // Notifications sequence
+    /* 🔔 SET NOTIFICATION FLOW */
     setNotifications([
       {
         type: "success",
@@ -69,67 +83,77 @@ export default function ApplyBusiness() {
         type: "info",
         title: "Under Review",
         message:
-          "Your application is under review. We will get back to you shortly.",
+          "Your application is under review. Our team will get back to you shortly.",
       },
       {
         type: "success",
-        title: "Application Approved",
+        title: "Approved",
         message:
           "Congratulations! Your business application has been approved.",
       },
     ]);
 
     setSubmitted(true);
-    setCurrentNotification(0); // start the notification sequence
+    setActiveIndex(0);
+
+    /* ⏳ SIMULATED STATUS UPDATES */
+    setTimeout(() => {
+      updateApplicationStatus(id, "under_review" as ApplicationStatus);
+    }, 4000);
+
+    setTimeout(() => {
+      updateApplicationStatus(id, "approved" as ApplicationStatus);
+    }, 8000);
   };
 
-  // Handle notification sequence
+  /* =========================
+     🔔 SEQUENTIAL NOTIFICATIONS
+     ========================= */
   useEffect(() => {
-    if (currentNotification === null) return;
-    if (currentNotification >= notifications.length) {
-      setCurrentNotification(null); // finished all notifications
-      return;
-    }
+    if (activeIndex < 0) return;
+    if (activeIndex >= notifications.length - 1) return;
 
     const timer = setTimeout(() => {
-      setCurrentNotification((prev) => (prev !== null ? prev + 1 : null));
-    }, 4000); // show each notification for 4 seconds
+      setActiveIndex((prev) => prev + 1);
+    }, 4000);
 
     return () => clearTimeout(timer);
-  }, [currentNotification, notifications]);
+  }, [activeIndex, notifications]);
 
+  /* =========================
+     ✅ SUBMITTED VIEW
+     ========================= */
   if (submitted) {
     return (
       <div className="min-h-screen flex flex-col bg-background">
         <Header />
 
-        {/* Notifications */}
-        {currentNotification !== null &&
-          currentNotification < notifications.length && (
-            <div className="fixed top-4 right-4 flex flex-col gap-4 z-50">
-              <Notification
-                type={notifications[currentNotification].type as any}
-                title={notifications[currentNotification].title}
-                message={notifications[currentNotification].message}
-                autoClose={false}
-              />
-            </div>
-          )}
+        {activeIndex >= 0 && notifications[activeIndex] && (
+          <div className="fixed top-4 right-4 z-50">
+            <Notification
+              type={notifications[activeIndex].type}
+              title={notifications[activeIndex].title}
+              message={notifications[activeIndex].message}
+              autoClose={false}
+            />
+          </div>
+        )}
 
         <main className="flex-1 flex items-center justify-center px-4 py-12">
           <div className="max-w-md w-full text-center space-y-6">
-            <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30">
-              <span className="text-5xl">✓</span>
+            <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-green-100">
+              <span className="text-5xl">📋</span>
             </div>
-            <div>
-              <h2 className="text-3xl font-bold text-foreground">
-                Application Submitted
-              </h2>
-              <p className="mt-2 text-muted-foreground">
-                Thank you for your business registration application. Please
-                watch the notifications above for status updates.
-              </p>
-            </div>
+
+            <h2 className="text-3xl font-bold text-foreground">
+              Application Submitted
+            </h2>
+
+            <p className="text-muted-foreground">
+              Thank you for your business registration application. Follow the
+              notifications above for status updates.
+            </p>
+
             <button
               onClick={() => navigate("/dashboard")}
               className="btn-primary w-full"
@@ -144,6 +168,9 @@ export default function ApplyBusiness() {
     );
   }
 
+  /* =========================
+     🧾 FORM DESIGN
+     ========================= */
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
@@ -163,8 +190,8 @@ export default function ApplyBusiness() {
                 Register Your Business
               </h1>
               <p className="mt-4 text-lg text-muted-foreground">
-                Complete this form to register your business legally. Get your
-                Tax ID and start operations.
+                Complete this form to register your business legally and get
+                your Tax ID.
               </p>
             </div>
 

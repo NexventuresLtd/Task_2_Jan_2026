@@ -1,10 +1,10 @@
-import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ServiceCard from "../components/ServiceCard";
 import { services } from "../data/mockApplications";
 
 export default function Home() {
+  // Icons for services
   const icons = {
     "national-id": "🆔",
     "health-insurance": "🏥",
@@ -41,12 +41,12 @@ export default function Home() {
                     Start Application
                   </a>
 
-                  <Link
-                    to="/dashboard"
+                  <a
+                    href="/dashboard"
                     className="inline-flex items-center justify-center rounded-lg border-2 border-white bg-transparent px-6 py-3 font-medium text-white transition-all hover:bg-white hover:text-primary active:scale-95"
                   >
                     View My Applications
-                  </Link>
+                  </a>
                 </div>
               </div>
 
@@ -102,12 +102,12 @@ export default function Home() {
                   name={service.name}
                   description={service.description}
                   icon={icons[service.id as keyof typeof icons]}
-                  href={
+                  detailsHref={
                     service.id === "national-id"
-                      ? "/apply-national-id"
+                      ? "/national-id-details"
                       : service.id === "health-insurance"
-                        ? "/apply-health"
-                        : "/apply-business"
+                        ? "/health-details"
+                        : "/business-details"
                   }
                   features={service.features}
                 />

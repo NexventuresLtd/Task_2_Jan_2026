@@ -54,14 +54,18 @@ export default function Footer() {
             <h3 className="font-semibold text-foreground mb-4">Resources</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
-                <a href="#" className="hover:text-foreground transition">
+                <Link
+                  to="/documentation"
+                  className="hover:text-foreground transition"
+                >
                   Documentation
-                </a>
+                </Link>
               </li>
+
               <li>
-                <a href="#" className="hover:text-foreground transition">
+                <Link to="/faq" className="hover:text-foreground transition">
                   FAQ
-                </a>
+                </Link>
               </li>
               <li>
                 <a href="#" className="hover:text-foreground transition">
@@ -85,9 +89,12 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-foreground transition">
+                <Link
+                  to="/contact"
+                  className="hover:text-foreground transition"
+                >
                   Contact
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -95,7 +102,7 @@ export default function Footer() {
 
         <div className="border-t border-border pt-8">
           <p className="text-center text-sm text-muted-foreground">
-            &copy; 2024 Government Services Portal. All rights reserved.
+            &copy; 2025 Government Services Portal. All rights reserved.
           </p>
         </div>
       </div>

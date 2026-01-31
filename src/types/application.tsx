@@ -3,7 +3,8 @@ export type ApplicationStatus =
   | "approved"
   | "rejected"
   | "pending"
-  | "reviewing";
+  | "reviewing"
+  | "under_review";
 export type ServiceType =
   | "national-id"
   | "health-insurance"
