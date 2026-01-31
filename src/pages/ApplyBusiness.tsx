@@ -20,7 +20,6 @@ export default function ApplyBusiness() {
   }, [navigate]);
 
   const [submitted, setSubmitted] = useState(false);
-  const [applicationId, setApplicationId] = useState<string>("");
 
   const [formData, setFormData] = useState({
     ownerName: "",
@@ -69,7 +68,6 @@ export default function ApplyBusiness() {
     };
 
     addApplication(application);
-    setApplicationId(id);
 
     /* 🔔 SET NOTIFICATION FLOW */
     setNotifications([

@@ -20,7 +20,6 @@ export default function ApplyNationalID() {
   }, [navigate]);
 
   const [submitted, setSubmitted] = useState(false);
-  const [applicationId, setApplicationId] = useState<string>("");
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -69,7 +68,6 @@ export default function ApplyNationalID() {
     };
 
     addApplication(application);
-    setApplicationId(id);
 
     /* 🔔 SET NOTIFICATION FLOW */
     setNotifications([
@@ -165,9 +163,8 @@ export default function ApplyNationalID() {
     );
   }
 
-  /* =========================
-     🧾 FORM DESIGN (YOUR PREFERRED STYLE)
-     ========================= */
+  //  🧾 FORM DESIGN
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header />

@@ -20,7 +20,6 @@ export default function ApplyHealth() {
   }, [navigate]);
 
   const [submitted, setSubmitted] = useState(false);
-  const [applicationId, setApplicationId] = useState<string>("");
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -70,7 +69,6 @@ export default function ApplyHealth() {
     };
 
     addApplication(application);
-    setApplicationId(id);
 
     /* 🔔 SET NOTIFICATION FLOW */
     setNotifications([
