@@ -1,73 +1,105 @@
-# React + TypeScript + Vite
+# GovConnect – Citizen Service Portal
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+GovConnect is a modern citizen service portal built with **React + TypeScript + Vite**.  
+The system allows citizens to apply for government services, track application status, and receive real-time notifications that simulate real-world government workflows.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Project Overview
+This project was developed as part of an academic assignment to demonstrate:
+- Frontend system design
+- State management using React Context
+- User experience for public service platforms
+- Application lifecycle handling (submission → review → approval/rejection)
 
-## React Compiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Key Features
+- Online application forms for:
+  - National ID
+  - Health Insurance
+  - Business Registration
+- Automated notification flow after application submission:
+  - Application submitted
+  - Application under review
+  - Final decision (approved or rejected)
+- User dashboard displaying:
+  - All submitted applications
+  - Current application status
+  - Application details
+- Centralized state management using React Context API
+- Modern, responsive UI using Tailwind CSS
+- Type-safe implementation with TypeScript
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Design Decisions
+- **React + Vite** were chosen for fast development and performance.
+- **Context API** was used to manage applications globally without complex state libraries.
+- **Notifications** were automated to simulate a real government review process.
+- **Blue and white color scheme** was selected for a clean, professional government-style interface.
+- The system simulates backend behavior on the frontend to focus on UI logic and flow.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## Application Status Flow
+1. User submits an application.
+2. Notification appears indicating submission.
+3. After a short delay, a review notification is shown.
+4. Final notification displays approval or rejection.
+5. The dashboard reflects the final application status.
+
+---
+
+## How to Run the Project Locally
+
+### Prerequisites
+- Node.js (v18 or later)
+- npm
+
+### Steps
+```bash
+# Clone the repository
+git clone https://github.com/NexventuresLtd/Task_2_Jan_2026/tree/GovConnect
+
+# Navigate to project folder
+cd citizen-service-portal
+
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+The application will be available at:
 ```
+http://localhost:5173
+```
+
+---
+
+## Deployment
+The application is deployed and accessible at:
+
+🔗 https://govconnectportal.netlify.app/
+
+---
+
+## Challenges Faced
+- Managing notification timing and sequencing
+- Keeping dashboard state consistent with application status
+- TypeScript type alignment between application status and UI notifications
+- Avoiding unnecessary page refreshes during navigation
+-applying lazy-loaded in pages
+---
+
+## Conclusion
+GovConnect demonstrates a practical approach to building a modern citizen service platform with clear user flow, real-time feedback, and maintainable frontend architecture.
+
+---
+## 👩‍💻 Author
+
+**M Belyse**  
