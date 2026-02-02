@@ -38,7 +38,7 @@ const Dashboard = ({ applications, setApplications }: DashboardProps) => {
     <section className="mx-auto max-w-7xl px-4 py-10 space-y-8">
       <div className="rounded-xl border border-blue-400 bg-white p-6 shadow-sm">
         <h1 className="text-xl md:text-2xl font-semibold text-gray-900">
-          Welcome{latestApp ? `, ${latestApp.applicationName}` : ""}
+          Welcome{latestApp ? `, ${latestApp.applicationName}!` : ""}
         </h1>
         <p className="mt-1 text-sm text-gray-600">
           You currently have{" "}

@@ -1,5 +1,5 @@
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  children: React.ReactNode;
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>{
+  children:React.ReactNode
 }
 
 const Button = ({ children, ...props }: ButtonProps) => {
